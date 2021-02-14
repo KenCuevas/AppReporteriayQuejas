@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReporteDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cafeteria">
+    <Key>
+      <PropertyRef Name="cafID" />
+    </Key>
+    <Property Name="cafID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCaf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcionCaf" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="localID" Type="Int32" Nullable="false" />
+    <Property Name="productoID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Local" Relationship="Self.FK_Cafeteria_Local" FromRole="Cafeteria" ToRole="Local" />
+    <NavigationProperty Name="TipoProducto" Relationship="Self.FK_Cafeteria_TipoProducto1" FromRole="Cafeteria" ToRole="TipoProducto" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="depID" />
+    </Key>
+    <Property Name="depID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreDep" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="respuestaCaso" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="hora" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Empleados" Relationship="Self.FK_Empleados_Departamento1" FromRole="Departamento" ToRole="Empleados" />
+    <NavigationProperty Name="Quejas" Relationship="Self.FK_Queja_Departamento1" FromRole="Departamento" ToRole="Queja" />
+    <NavigationProperty Name="Reclamos" Relationship="Self.FK_Reclamos_Departamento" FromRole="Departamento" ToRole="Reclamos" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Status_Departamento1" FromRole="Departamento" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="depID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Empleados_Departamento1" FromRole="Empleados" ToRole="Departamento" />
+  </EntityType>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="localID" />
+    </Key>
+    <Property Name="localID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="localNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cafeterias" Relationship="Self.FK_Cafeteria_Local" FromRole="Local" ToRole="Cafeteria" />
+  </EntityType>
+  <EntityType Name="Queja">
+    <Key>
+      <PropertyRef Name="QuejaID" />
+    </Key>
+    <Property Name="QuejaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="depID" Type="Int32" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="tipoQuejaID" Type="Int32" Nullable="false" />
+    <Property Name="statusID" Type="Int32" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Queja_Departamento1" FromRole="Queja" ToRole="Departamento" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Queja_Status" FromRole="Queja" ToRole="Status" />
+    <NavigationProperty Name="tipoQueja" Relationship="Self.FK_Queja_tipoQueja1" FromRole="Queja" ToRole="tipoQueja" />
+  </EntityType>
+  <EntityType Name="Reclamo">
+    <Key>
+      <PropertyRef Name="reclamoID" />
+    </Key>
+    <Property Name="reclamoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="depID" Type="Int32" Nullable="false" />
+    <Property Name="fechaReclamo" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horaReclamo" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="IdTipoReclamo" Type="Int32" Nullable="false" />
+    <Property Name="statusID" Type="Int32" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Reclamos_Departamento" FromRole="Reclamos" ToRole="Departamento" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Reclamos_Status" FromRole="Reclamos" ToRole="Status" />
+    <NavigationProperty Name="TipoDeReclamo" Relationship="Self.FK_Reclamos_TipoDeReclamo" FromRole="Reclamos" ToRole="TipoDeReclamo" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaContacto" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="depID" Type="Int32" Nullable="false" />
+    <Property Name="comentarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="empID" Type="Int32" Nullable="false" />
+    <Property Name="IdTipoStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departamento" Relationship="Self.FK_Status_Departamento1" FromRole="Status" ToRole="Departamento" />
+    <NavigationProperty Name="Quejas" Relationship="Self.FK_Queja_Status" FromRole="Status" ToRole="Queja" />
+    <NavigationProperty Name="Reclamos" Relationship="Self.FK_Reclamos_Status" FromRole="Status" ToRole="Reclamos" />
+    <NavigationProperty Name="tipoStatu" Relationship="Self.FK_Status_tipoStatus" FromRole="Status" ToRole="tipoStatus" />
+  </EntityType>
+  <EntityType Name="TipoDeReclamo">
+    <Key>
+      <PropertyRef Name="IdTipoReclamo" />
+    </Key>
+    <Property Name="IdTipoReclamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipoReclamo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Reclamos" Relationship="Self.FK_Reclamos_TipoDeReclamo" FromRole="TipoDeReclamo" ToRole="Reclamos" />
+  </EntityType>
+  <EntityType Name="TipoProducto">
+    <Key>
+      <PropertyRef Name="productoID" />
+    </Key>
+    <Property Name="productoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cafeterias" Relationship="Self.FK_Cafeteria_TipoProducto1" FromRole="TipoProducto" ToRole="Cafeteria" />
+  </EntityType>
+  <EntityType Name="tipoQueja">
+    <Key>
+      <PropertyRef Name="tipoQuejaID" />
+    </Key>
+    <Property Name="tipoQuejaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreQueja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Quejas" Relationship="Self.FK_Queja_tipoQueja1" FromRole="tipoQueja" ToRole="Queja" />
+  </EntityType>
+  <EntityType Name="tipoStatu">
+    <Key>
+      <PropertyRef Name="IdTipoStatus" />
+    </Key>
+    <Property Name="IdTipoStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Status_tipoStatus" FromRole="tipoStatus" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cafeteria_Local">
+    <End Role="Local" Type="Self.Local" Multiplicity="1" />
+    <End Role="Cafeteria" Type="Self.Cafeteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Local">
+        <PropertyRef Name="localID" />
+      </Principal>
+      <Dependent Role="Cafeteria">
+        <PropertyRef Name="localID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cafeteria_TipoProducto1">
+    <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+    <End Role="Cafeteria" Type="Self.Cafeteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProducto">
+        <PropertyRef Name="productoID" />
+      </Principal>
+      <Dependent Role="Cafeteria">
+        <PropertyRef Name="localID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleados_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Empleados">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Reclamos" Type="Self.Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_tipoQueja1">
+    <End Role="tipoQueja" Type="Self.tipoQueja" Multiplicity="1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoQueja">
+        <PropertyRef Name="tipoQuejaID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="tipoQuejaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Reclamos" Type="Self.Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_TipoDeReclamo">
+    <End Role="TipoDeReclamo" Type="Self.TipoDeReclamo" Multiplicity="1" />
+    <End Role="Reclamos" Type="Self.Reclamo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeReclamo">
+        <PropertyRef Name="IdTipoReclamo" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="IdTipoReclamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_tipoStatus">
+    <End Role="tipoStatus" Type="Self.tipoStatu" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoStatus">
+        <PropertyRef Name="IdTipoStatus" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="IdTipoStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReporteDBEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cafeterias" EntityType="Self.Cafeteria" />
+    <EntitySet Name="Departamentoes" EntityType="Self.Departamento" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+    <EntitySet Name="Locals" EntityType="Self.Local" />
+    <EntitySet Name="Quejas" EntityType="Self.Queja" />
+    <EntitySet Name="Reclamos" EntityType="Self.Reclamo" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="TipoDeReclamoes" EntityType="Self.TipoDeReclamo" />
+    <EntitySet Name="TipoProductoes" EntityType="Self.TipoProducto" />
+    <EntitySet Name="tipoQuejas" EntityType="Self.tipoQueja" />
+    <EntitySet Name="tipoStatus" EntityType="Self.tipoStatu" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Cafeteria_Local" Association="Self.FK_Cafeteria_Local">
+      <End Role="Local" EntitySet="Locals" />
+      <End Role="Cafeteria" EntitySet="Cafeterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cafeteria_TipoProducto1" Association="Self.FK_Cafeteria_TipoProducto1">
+      <End Role="TipoProducto" EntitySet="TipoProductoes" />
+      <End Role="Cafeteria" EntitySet="Cafeterias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleados_Departamento1" Association="Self.FK_Empleados_Departamento1">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Empleados" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Departamento1" Association="Self.FK_Queja_Departamento1">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Queja" EntitySet="Quejas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_Departamento" Association="Self.FK_Reclamos_Departamento">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Departamento1" Association="Self.FK_Status_Departamento1">
+      <End Role="Departamento" EntitySet="Departamentoes" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Status" Association="Self.FK_Queja_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Queja" EntitySet="Quejas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_tipoQueja1" Association="Self.FK_Queja_tipoQueja1">
+      <End Role="tipoQueja" EntitySet="tipoQuejas" />
+      <End Role="Queja" EntitySet="Quejas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_Status" Association="Self.FK_Reclamos_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_TipoDeReclamo" Association="Self.FK_Reclamos_TipoDeReclamo">
+      <End Role="TipoDeReclamo" EntitySet="TipoDeReclamoes" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_tipoStatus" Association="Self.FK_Status_tipoStatus">
+      <End Role="tipoStatus" EntitySet="tipoStatus" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

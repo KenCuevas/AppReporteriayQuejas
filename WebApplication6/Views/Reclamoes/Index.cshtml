@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebApplication6.Reclamo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaReclamo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horaReclamo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamento.nombreDep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.descripcionStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoDeReclamo.tipoReclamo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaReclamo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horaReclamo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departamento.nombreDep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.descripcionStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDeReclamo.tipoReclamo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.reclamoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.reclamoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.reclamoID })
+        </td>
+    </tr>
+}
+
+</table>

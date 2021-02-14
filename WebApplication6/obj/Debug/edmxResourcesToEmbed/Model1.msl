@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReporteDBModelStoreContainer" CdmEntityContainer="ReporteDBEntities2">
+    <EntitySetMapping Name="Cafeterias">
+      <EntityTypeMapping TypeName="ReporteDBModel.Cafeteria">
+        <MappingFragment StoreEntitySet="Cafeteria">
+          <ScalarProperty Name="cafID" ColumnName="cafID" />
+          <ScalarProperty Name="nombreCaf" ColumnName="nombreCaf" />
+          <ScalarProperty Name="descripcionCaf" ColumnName="descripcionCaf" />
+          <ScalarProperty Name="localID" ColumnName="localID" />
+          <ScalarProperty Name="productoID" ColumnName="productoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departamentoes">
+      <EntityTypeMapping TypeName="ReporteDBModel.Departamento">
+        <MappingFragment StoreEntitySet="Departamento">
+          <ScalarProperty Name="depID" ColumnName="depID" />
+          <ScalarProperty Name="nombreDep" ColumnName="nombreDep" />
+          <ScalarProperty Name="respuestaCaso" ColumnName="respuestaCaso" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleados">
+      <EntityTypeMapping TypeName="ReporteDBModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleados">
+          <ScalarProperty Name="empID" ColumnName="empID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="depID" ColumnName="depID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locals">
+      <EntityTypeMapping TypeName="ReporteDBModel.Local">
+        <MappingFragment StoreEntitySet="Local">
+          <ScalarProperty Name="localID" ColumnName="localID" />
+          <ScalarProperty Name="localNombre" ColumnName="localNombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quejas">
+      <EntityTypeMapping TypeName="ReporteDBModel.Queja">
+        <MappingFragment StoreEntitySet="Queja">
+          <ScalarProperty Name="QuejaID" ColumnName="QuejaID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="depID" ColumnName="depID" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="hora" ColumnName="hora" />
+          <ScalarProperty Name="tipoQuejaID" ColumnName="tipoQuejaID" />
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reclamos">
+      <EntityTypeMapping TypeName="ReporteDBModel.Reclamo">
+        <MappingFragment StoreEntitySet="Reclamos">
+          <ScalarProperty Name="reclamoID" ColumnName="reclamoID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="depID" ColumnName="depID" />
+          <ScalarProperty Name="fechaReclamo" ColumnName="fechaReclamo" />
+          <ScalarProperty Name="horaReclamo" ColumnName="horaReclamo" />
+          <ScalarProperty Name="IdTipoReclamo" ColumnName="IdTipoReclamo" />
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="ReporteDBModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+          <ScalarProperty Name="descripcionStatus" ColumnName="descripcionStatus" />
+          <ScalarProperty Name="fechaContacto" ColumnName="fechaContacto" />
+          <ScalarProperty Name="depID" ColumnName="depID" />
+          <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+          <ScalarProperty Name="empID" ColumnName="empID" />
+          <ScalarProperty Name="IdTipoStatus" ColumnName="IdTipoStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoDeReclamoes">
+      <EntityTypeMapping TypeName="ReporteDBModel.TipoDeReclamo">
+        <MappingFragment StoreEntitySet="TipoDeReclamo">
+          <ScalarProperty Name="IdTipoReclamo" ColumnName="IdTipoReclamo" />
+          <ScalarProperty Name="tipoReclamo" ColumnName="tipoReclamo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoProductoes">
+      <EntityTypeMapping TypeName="ReporteDBModel.TipoProducto">
+        <MappingFragment StoreEntitySet="TipoProducto">
+          <ScalarProperty Name="productoID" ColumnName="productoID" />
+          <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoQuejas">
+      <EntityTypeMapping TypeName="ReporteDBModel.tipoQueja">
+        <MappingFragment StoreEntitySet="tipoQueja">
+          <ScalarProperty Name="tipoQuejaID" ColumnName="tipoQuejaID" />
+          <ScalarProperty Name="nombreQueja" ColumnName="nombreQueja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoStatus">
+      <EntityTypeMapping TypeName="ReporteDBModel.tipoStatu">
+        <MappingFragment StoreEntitySet="tipoStatus">
+          <ScalarProperty Name="IdTipoStatus" ColumnName="IdTipoStatus" />
+          <ScalarProperty Name="nombreStatus" ColumnName="nombreStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="ReporteDBModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

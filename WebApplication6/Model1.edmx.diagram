@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e31a94cf0954482acc6dc500762d819" Name="Diagram1">
+        <EntityTypeShape EntityType="ReporteDBModel.Cafeteria" Width="1.5" PointX="8" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Departamento" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Empleado" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Local" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Queja" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Reclamo" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Status" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.TipoDeReclamo" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.TipoProducto" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.tipoQueja" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.tipoStatu" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReporteDBModel.Usuario" Width="1.5" PointX="8.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="ReporteDBModel.FK_Cafeteria_Local" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Cafeteria_TipoProducto1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Empleados_Departamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Queja_Departamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Reclamos_Departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Status_Departamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Queja_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Queja_tipoQueja1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Reclamos_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Reclamos_TipoDeReclamo" ManuallyRouted="false" />
+        <AssociationConnector Association="ReporteDBModel.FK_Status_tipoStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

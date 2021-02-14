@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication6.Local>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.localNombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.localNombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.localID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.localID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.localID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReporteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cafeteria">
+    <Key>
+      <PropertyRef Name="cafID" />
+    </Key>
+    <Property Name="cafID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreCaf" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcionCaf" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="localID" Type="int" Nullable="false" />
+    <Property Name="productoID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="depID" />
+    </Key>
+    <Property Name="depID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreDep" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="respuestaCaso" Type="varchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="hora" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="depID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Local">
+    <Key>
+      <PropertyRef Name="localID" />
+    </Key>
+    <Property Name="localID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="localNombre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Queja">
+    <Key>
+      <PropertyRef Name="QuejaID" />
+    </Key>
+    <Property Name="QuejaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="depID" Type="int" Nullable="false" />
+    <Property Name="fecha" Type="date" Nullable="false" />
+    <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+    <Property Name="tipoQuejaID" Type="int" Nullable="false" />
+    <Property Name="statusID" Type="int" />
+  </EntityType>
+  <EntityType Name="Reclamos">
+    <Key>
+      <PropertyRef Name="reclamoID" />
+    </Key>
+    <Property Name="reclamoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="depID" Type="int" Nullable="false" />
+    <Property Name="fechaReclamo" Type="date" Nullable="false" />
+    <Property Name="horaReclamo" Type="time" Precision="7" Nullable="false" />
+    <Property Name="IdTipoReclamo" Type="int" Nullable="false" />
+    <Property Name="statusID" Type="int" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcionStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaContacto" Type="date" Nullable="false" />
+    <Property Name="depID" Type="int" Nullable="false" />
+    <Property Name="comentarios" Type="varchar(max)" Nullable="false" />
+    <Property Name="empID" Type="int" Nullable="false" />
+    <Property Name="IdTipoStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoDeReclamo">
+    <Key>
+      <PropertyRef Name="IdTipoReclamo" />
+    </Key>
+    <Property Name="IdTipoReclamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipoReclamo" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoProducto">
+    <Key>
+      <PropertyRef Name="productoID" />
+    </Key>
+    <Property Name="productoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreProducto" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tipoQueja">
+    <Key>
+      <PropertyRef Name="tipoQuejaID" />
+    </Key>
+    <Property Name="tipoQuejaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreQueja" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tipoStatus">
+    <Key>
+      <PropertyRef Name="IdTipoStatus" />
+    </Key>
+    <Property Name="IdTipoStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreStatus" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cedula" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Cafeteria_Local">
+    <End Role="Local" Type="Self.Local" Multiplicity="1" />
+    <End Role="Cafeteria" Type="Self.Cafeteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Local">
+        <PropertyRef Name="localID" />
+      </Principal>
+      <Dependent Role="Cafeteria">
+        <PropertyRef Name="localID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cafeteria_TipoProducto1">
+    <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+    <End Role="Cafeteria" Type="Self.Cafeteria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoProducto">
+        <PropertyRef Name="productoID" />
+      </Principal>
+      <Dependent Role="Cafeteria">
+        <PropertyRef Name="localID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empleados_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Empleados">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_tipoQueja1">
+    <End Role="tipoQueja" Type="Self.tipoQueja" Multiplicity="1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoQueja">
+        <PropertyRef Name="tipoQuejaID" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="tipoQuejaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Reclamos" Type="Self.Reclamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Reclamos" Type="Self.Reclamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reclamos_TipoDeReclamo">
+    <End Role="TipoDeReclamo" Type="Self.TipoDeReclamo" Multiplicity="1" />
+    <End Role="Reclamos" Type="Self.Reclamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDeReclamo">
+        <PropertyRef Name="IdTipoReclamo" />
+      </Principal>
+      <Dependent Role="Reclamos">
+        <PropertyRef Name="IdTipoReclamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Departamento1">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="depID" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="depID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_tipoStatus">
+    <End Role="tipoStatus" Type="Self.tipoStatus" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoStatus">
+        <PropertyRef Name="IdTipoStatus" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="IdTipoStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReporteDBModelStoreContainer">
+    <EntitySet Name="Cafeteria" EntityType="Self.Cafeteria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Local" EntityType="Self.Local" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Queja" EntityType="Self.Queja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reclamos" EntityType="Self.Reclamos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoDeReclamo" EntityType="Self.TipoDeReclamo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipoQueja" EntityType="Self.tipoQueja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tipoStatus" EntityType="Self.tipoStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cafeteria_Local" Association="Self.FK_Cafeteria_Local">
+      <End Role="Local" EntitySet="Local" />
+      <End Role="Cafeteria" EntitySet="Cafeteria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cafeteria_TipoProducto1" Association="Self.FK_Cafeteria_TipoProducto1">
+      <End Role="TipoProducto" EntitySet="TipoProducto" />
+      <End Role="Cafeteria" EntitySet="Cafeteria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empleados_Departamento1" Association="Self.FK_Empleados_Departamento1">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Empleados" EntitySet="Empleados" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Departamento1" Association="Self.FK_Queja_Departamento1">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Status" Association="Self.FK_Queja_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_tipoQueja1" Association="Self.FK_Queja_tipoQueja1">
+      <End Role="tipoQueja" EntitySet="tipoQueja" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_Departamento" Association="Self.FK_Reclamos_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_Status" Association="Self.FK_Reclamos_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reclamos_TipoDeReclamo" Association="Self.FK_Reclamos_TipoDeReclamo">
+      <End Role="TipoDeReclamo" EntitySet="TipoDeReclamo" />
+      <End Role="Reclamos" EntitySet="Reclamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Departamento1" Association="Self.FK_Status_Departamento1">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_tipoStatus" Association="Self.FK_Status_tipoStatus">
+      <End Role="tipoStatus" EntitySet="tipoStatus" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

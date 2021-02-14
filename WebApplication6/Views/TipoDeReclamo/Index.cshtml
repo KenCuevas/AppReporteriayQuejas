@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication6.TipoDeReclamo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoReclamo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipoReclamo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdTipoReclamo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdTipoReclamo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdTipoReclamo })
+        </td>
+    </tr>
+}
+
+</table>
